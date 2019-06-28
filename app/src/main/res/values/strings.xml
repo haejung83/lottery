@@ -1,0 +1,12 @@
+<resources>
+    <!-- Common -->
+    <string name="label_app_name">NeoLottery</string>
+
+    <!-- Splash -->
+    <string name="label_splash_gathering_data">Gathering data from the Server</string>
+
+    <!-- Welcome -->
+    <string name="label_welcome">Welcome to NeoLottery</string>
+    <string name="button_move_to_next">Move to next</string>
+
+</resources>
