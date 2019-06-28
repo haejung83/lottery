@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.github.haejung83.data.LotteryRepository
 import com.github.haejung83.data.provideLotteryRepository
+import com.github.haejung83.presentation.splash.SplashViewModel
+import com.github.haejung83.presentation.welcome.WelcomeViewModel
 
 class ViewModelFactory private constructor(
     private val lotteryRepository: LotteryRepository
@@ -14,11 +16,8 @@ class ViewModelFactory private constructor(
     override fun <T : ViewModel?> create(modelClass: Class<T>): T =
         with(modelClass) {
             when {
-//                isAssignableFrom(MarkViewModel::class.java) -> MarkViewModel(markRepository)
-//                isAssignableFrom(PresetViewModel::class.java) -> PresetViewModel(markPresetRepository)
-//                isAssignableFrom(SnsViewModel::class.java) -> SnsViewModel()
-//                isAssignableFrom(AddMarkViewModel::class.java) -> AddMarkViewModel(markRepository)
-//                isAssignableFrom(SnapViewModel::class.java) -> SnapViewModel(markRepository, markPresetRepository)
+                isAssignableFrom(SplashViewModel::class.java) -> SplashViewModel(lotteryRepository)
+                isAssignableFrom(WelcomeViewModel::class.java) -> WelcomeViewModel()
                 else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }
         } as T

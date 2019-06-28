@@ -1,24 +1,32 @@
 package com.github.haejung83.presentation.welcome
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.github.haejung83.R
+import com.github.haejung83.databinding.ActivityWelcomeBinding
+import com.github.haejung83.extend.moveToActivity
+import com.github.haejung83.extend.obtainViewModel
+import com.github.haejung83.presentation.base.DataBindingAppCompatActivity
 import com.github.haejung83.presentation.main.MainActivity
-import kotlinx.android.synthetic.main.activity_welcome.*
 
-class WelcomeActivity : AppCompatActivity() {
+class WelcomeActivity : DataBindingAppCompatActivity<ActivityWelcomeBinding>() {
+
+    override val layoutResId: Int
+        get() = R.layout.activity_welcome
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_welcome)
 
-        bindings()
-    }
+        viewDataBinding.viewmodel = obtainViewModel(WelcomeViewModel::class.java).apply {
 
-    private fun bindings() {
-        button_next.setOnClickListener {
-            startActivity(Intent(applicationContext, MainActivity::class.java))
+            moveToMainEvent.observe(this@WelcomeActivity, Observer { event ->
+                event.getContentIfNotHandled()?.let {
+                    moveToActivity(MainActivity::class.java)
+                }
+            })
+
         }
+        viewDataBinding.lifecycleOwner = this
     }
+
 }

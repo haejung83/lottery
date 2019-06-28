@@ -1,66 +1,50 @@
 package com.github.haejung83.presentation.splash
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import com.github.haejung83.R
-import com.github.haejung83.data.LotteryRepository
-import com.github.haejung83.data.provideLotteryRepository
+import com.github.haejung83.databinding.ActivitySplashBinding
 import com.github.haejung83.extend.moveToActivity
+import com.github.haejung83.extend.obtainViewModel
+import com.github.haejung83.extend.showToast
+import com.github.haejung83.presentation.base.DataBindingAppCompatActivity
 import com.github.haejung83.presentation.main.MainActivity
+import com.github.haejung83.presentation.splash.SplashViewModel.MoveToClass.MoveToMain
+import com.github.haejung83.presentation.splash.SplashViewModel.MoveToClass.MoveToWelcome
 import com.github.haejung83.presentation.welcome.WelcomeActivity
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.addTo
-import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
+import kotlinx.android.synthetic.main.activity_splash.*
 
-class SplashActivity : AppCompatActivity() {
+class SplashActivity : DataBindingAppCompatActivity<ActivitySplashBinding>() {
 
-    private lateinit var repository: LotteryRepository
-    private val disposable by lazy {
-        CompositeDisposable()
-    }
+    override val layoutResId: Int
+        get() = R.layout.activity_splash
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
 
-        repository = provideLotteryRepository(applicationContext)
-        checkLotteryAndRefreshIfNeeds()
-    }
-
-    override fun onDestroy() {
-        disposable.clear()
-        super.onDestroy()
-    }
-
-    private fun checkLotteryAndRefreshIfNeeds() {
-        repository.count()
-            .subscribeOn(Schedulers.io())
-            .subscribe({ count ->
-                Timber.i("Count: $count")
-                if (count != LotteryRepository.LOTTERY_DRAW_NUMBER_CACHE_LIMIT) {
-                    refreshLotteries()
-                } else {
-                    moveToActivity(MainActivity::class.java)
+        viewDataBinding.viewmodel = obtainViewModel(SplashViewModel::class.java).apply {
+            moveToEvent.observe(this@SplashActivity, Observer { event ->
+                event.getContentIfNotHandled()?.let { moveToClass ->
+                    when (moveToClass) {
+                        is MoveToMain -> moveToActivity(MainActivity::class.java)
+                        is MoveToWelcome -> moveToActivity(WelcomeActivity::class.java)
+                    }
                 }
-            }, {
-                Timber.e(it)
-                finish()
             })
-            .addTo(disposable)
+            refreshErrorEvent.observe(this@SplashActivity, Observer { event ->
+                event.getContentIfNotHandled()?.let {
+                    container_layout.showToast(it, Toast.LENGTH_SHORT)
+                    finish()
+                }
+            })
+        }
+        viewDataBinding.lifecycleOwner = this
     }
 
-    private fun refreshLotteries() {
-        repository.refresh()
-            .subscribeOn(Schedulers.io())
-            .subscribe({
-                Timber.i("Refresh: Done")
-                moveToActivity(WelcomeActivity::class.java)
-            }, {
-                Timber.e(it)
-                finish()
-            })
-            .addTo(disposable)
+    override fun onStart() {
+        super.onStart()
+        viewDataBinding.viewmodel?.checkLotteryAndRefreshIfNeeds()
     }
 
 }

@@ -3,7 +3,7 @@ package com.github.haejung83.presentation.base
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 
-open class BaseViewModel : ViewModel() {
+open class DisposableViewModel : ViewModel() {
 
     protected val disposable by lazy(LazyThreadSafetyMode.NONE) {
         CompositeDisposable()

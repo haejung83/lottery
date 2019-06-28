@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProviders
+import com.github.haejung83.presentation.ViewModelFactory
 
 fun <T> AppCompatActivity.startActivity(clazz: Class<T>) {
     val intent = Intent(applicationContext, clazz)
@@ -49,8 +52,8 @@ fun AppCompatActivity.setupActionBar(@IdRes toolbarId: Int, action: ActionBar.()
     }
 }
 
-//fun <T : ViewModel> AppCompatActivity.obtainViewModel(viewModelClass: Class<T>) =
-//    ViewModelProviders.of(this, ViewModelFactory.getInstance(applicationContext)).get(viewModelClass)
+fun <T : ViewModel> AppCompatActivity.obtainViewModel(viewModelClass: Class<T>) =
+    ViewModelProviders.of(this, ViewModelFactory.getInstance(applicationContext)).get(viewModelClass)
 
 private inline fun FragmentManager.transact(action: FragmentTransaction.() -> Unit) =
     beginTransaction().apply { action() }.commit()
