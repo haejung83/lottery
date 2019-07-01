@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="androidx.core.content.ContextCompat"/>
+        <variable
+                name="viewmodel"
+                type="com.github.haejung83.presentation.main.MainViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".presentation.main.MainFragment" android:id="@+id/container_layout">
+        <TextView
+                android:text="Lottery, Have a good luck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_main_title" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="16dp" android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        <TextView
+                android:text="Draw Number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_draw_number_title"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="16dp" app:layout_constraintTop_toTopOf="@+id/edit_draw_number"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_draw_number"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+        <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/edit_draw_number" android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@+id/text_main_title" android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/text_draw_number_title" android:layout_marginStart="16dp"
+                android:hint="1~50" android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/text_generated_lottery_numbers"/>
+        <TextView
+                android:text="Out of range, Type again (1~50)"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_draw_number_hint"
+                app:layout_constraintStart_toStartOf="@+id/edit_draw_number"
+                app:layout_constraintEnd_toEndOf="@+id/edit_draw_number" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/text_draw_number_title" android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" android:textColor="@color/primaryDarkColor"/>
+        <Button
+                android:text="Lottery"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_generate_lottery"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="16dp" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/text_generated_lottery_numbers"
+                app:layout_constraintEnd_toStartOf="@+id/button_check_lottery" android:layout_marginEnd="16dp"/>
+        <TextView
+                android:text="TextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_generated_lottery_numbers" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+                android:background="@color/secondaryColor" android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" android:paddingTop="16dp"
+                android:paddingBottom="16dp" android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/divider_one"
+                app:layout_constraintVertical_bias="0.65"/>
+        <View
+                android:id="@+id/divider_one"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="32dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="32dp" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.7"/>
+        <Button
+                android:text="Check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_check_lottery"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/text_generated_lottery_numbers"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"/>
+        <Button
+                android:text="Frequently"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_frequently_number"
+                app:layout_constraintEnd_toEndOf="@+id/divider_one" app:layout_constraintStart_toStartOf="@+id/divider_one"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/divider_one"
+                app:layout_constraintVertical_bias="0.75"/>
+        <Button
+                android:text="Draw History"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_draw_history"
+                app:layout_constraintStart_toStartOf="@+id/divider_one"
+                app:layout_constraintEnd_toEndOf="@+id/divider_one" app:layout_constraintTop_toBottomOf="@+id/divider_one"
+                android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0.3"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
