@@ -89,6 +89,7 @@ class LotteryRepository(
 
     companion object {
         const val LOTTERY_DRAW_NUMBER_CACHE_LIMIT = 50
+//        const val LOTTERY_DRAW_NUMBER_CACHE_LIMIT = 865
     }
 
 }

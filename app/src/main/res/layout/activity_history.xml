@@ -4,27 +4,62 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View"/>
-        <import type="androidx.core.content.ContextCompat"/>
         <variable
                 name="viewmodel"
                 type="com.github.haejung83.presentation.history.HistoryViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".presentation.history.HistoryActivity"
-            android:id="@+id/container_layout">
+            tools:context=".presentation.history.HistoryActivity">
 
-        <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/history_recycler_view"
+        <TextView
+                android:id="@+id/text_header_bonus_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_draw_bonus_number"
+                app:layout_constraintTop_toTopOf="@+id/text_header_draw_number"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="16dp"
+                android:padding="3dp"/>
+        <TextView
+                android:id="@+id/text_header_six_numbers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/label_draw_six_numbers"
+                app:layout_constraintTop_toTopOf="@+id/text_header_draw_number"
+                app:layout_constraintStart_toEndOf="@+id/text_header_draw_number"
+                app:layout_constraintBottom_toBottomOf="@+id/text_header_draw_number"
+                app:layout_constraintEnd_toStartOf="@+id/text_header_bonus_number"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:padding="3dp"/>
+        <TextView
+                android:id="@+id/text_header_draw_number"
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:text="@string/label_draw_number"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:padding="3dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/history_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:viewModel="@{viewmodel}"
+                app:items="@{viewmodel.items}"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintVertical_bias="1.0"
+                app:layout_constraintTop_toBottomOf="@+id/text_header_draw_number"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

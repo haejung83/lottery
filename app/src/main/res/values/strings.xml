@@ -12,4 +12,10 @@
     <!-- Welcome -->
     <string name="label_welcome">Welcome to NeoLottery</string>
 
+    <!-- History -->
+    <string name="label_draw_number">No.</string>
+    <string name="label_draw_six_numbers">Numbers</string>
+    <string name="label_draw_bonus_number">Bonus</string>
+
+
 </resources>
