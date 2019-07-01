@@ -18,4 +18,7 @@ data class Lottery(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     var id: Int = 0
+
+    fun toSixNumberList() =
+        listOf(drawNo1, drawNo2, drawNo3, drawNo4, drawNo5, drawNo6)
 }

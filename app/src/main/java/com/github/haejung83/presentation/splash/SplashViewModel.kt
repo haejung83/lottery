@@ -2,6 +2,7 @@ package com.github.haejung83.presentation.splash
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.github.haejung83.LOTTERY_DRAW_NUMBER_CACHE_LIMIT
 import com.github.haejung83.data.LotteryRepository
 import com.github.haejung83.presentation.Event
 import com.github.haejung83.presentation.base.DisposableViewModel
@@ -32,7 +33,7 @@ class SplashViewModel(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ count ->
                 Timber.i("Count: $count")
-                if (count != LotteryRepository.LOTTERY_DRAW_NUMBER_CACHE_LIMIT) {
+                if (count != LOTTERY_DRAW_NUMBER_CACHE_LIMIT) {
                     refreshLotteries()
                 } else {
                     _moveToEvent.value = Event(MoveToClass.MoveToMain)

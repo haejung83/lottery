@@ -1,6 +1,7 @@
 package com.github.haejung83.data
 
 import androidx.paging.DataSource
+import com.github.haejung83.LOTTERY_DRAW_NUMBER_CACHE_LIMIT
 import com.github.haejung83.data.local.Lottery
 import com.github.haejung83.data.local.LotteryDao
 import com.github.haejung83.data.remote.LotteryAPI
@@ -86,10 +87,5 @@ class LotteryRepository(
                         }
                     })
         }
-
-    companion object {
-        const val LOTTERY_DRAW_NUMBER_CACHE_LIMIT = 50
-//        const val LOTTERY_DRAW_NUMBER_CACHE_LIMIT = 865
-    }
 
 }
