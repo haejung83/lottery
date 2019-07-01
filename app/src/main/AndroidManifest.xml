@@ -12,6 +12,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".presentation.history.HistoryActivity">
+        </activity>
         <activity android:name=".presentation.welcome.WelcomeActivity">
         </activity>
         <activity android:name=".presentation.splash.SplashActivity">

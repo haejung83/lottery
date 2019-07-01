@@ -1,5 +1,6 @@
 package com.github.haejung83.data
 
+import androidx.paging.DataSource
 import com.github.haejung83.data.local.Lottery
 import com.github.haejung83.data.local.LotteryDao
 import com.github.haejung83.data.remote.LotteryAPI
@@ -29,6 +30,9 @@ class LotteryRepository(
 
     override fun getLotteries(): Flowable<List<Lottery>> =
         lotteryDao.findAll()
+
+    override fun getLotteriesForPaging(): DataSource.Factory<Int, Lottery> =
+        lotteryDao.findAllForPaging()
 
     override fun getLotteryByDrawNumber(drawNumber: Int): Flowable<Lottery> =
         lotteryDao.findByDrawNumber(drawNumber)

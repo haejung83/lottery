@@ -1,5 +1,6 @@
 package com.github.haejung83.data.local
 
+import androidx.paging.DataSource
 import androidx.room.*
 import io.reactivex.Completable
 import io.reactivex.Flowable
@@ -10,6 +11,9 @@ interface LotteryDao {
 
     @Query("SELECT * FROM lottery")
     fun findAll(): Flowable<List<Lottery>>
+
+    @Query("SELECT * FROM lottery ORDER BY drwNo ASC")
+    fun findAllForPaging(): DataSource.Factory<Int, Lottery>
 
     @Query("SELECT * FROM lottery WHERE drwNo = :number")
     fun findByDrawNumber(number: Int): Flowable<Lottery>

@@ -1,5 +1,6 @@
 package com.github.haejung83.data
 
+import androidx.paging.DataSource
 import com.github.haejung83.data.local.Lottery
 import io.reactivex.Completable
 import io.reactivex.Flowable
@@ -8,6 +9,8 @@ import io.reactivex.Single
 interface LotteryDataSource {
 
     fun getLotteries(): Flowable<List<Lottery>>
+
+    fun getLotteriesForPaging(): DataSource.Factory<Int, Lottery>
 
     fun getLotteryByDrawNumber(drawNumber: Int): Flowable<Lottery>
 
