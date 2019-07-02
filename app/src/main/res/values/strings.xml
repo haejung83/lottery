@@ -13,7 +13,7 @@
     <string name="label_welcome_greeting">Welcome to NeoLottery</string>
 
     <!-- Main -->
-    <string name="label_main_greeting">NeoLottery!, Have a good luck</string>
+    <string name="label_main_greeting">NeoLottery, Have a good luck!</string>
     <string name="label_draw_number_title">Draw Number</string>
     <string name="label_empty_or_out_of_range_desc">Empty or Out of range.</string>
     <string name="label_generate_lottery">New Lottery</string>
