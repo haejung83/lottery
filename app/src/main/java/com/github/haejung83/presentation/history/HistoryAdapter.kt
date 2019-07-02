@@ -9,7 +9,7 @@ import com.github.haejung83.data.local.Lottery
 import com.github.haejung83.databinding.ViewItemHistoryBinding
 
 class HistoryAdapter(
-    private val viewModel: HistoryViewModel
+    private val viewModel: HistoryViewModel // Just in case, for adding action listener
 ) : PagedListAdapter<Lottery, HistoryAdapter.HistoryViewHolder>(HistoryDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -41,6 +41,5 @@ class HistoryAdapter(
 
         override fun areContentsTheSame(oldItem: Lottery, newItem: Lottery): Boolean =
             oldItem == newItem
-
     }
 }

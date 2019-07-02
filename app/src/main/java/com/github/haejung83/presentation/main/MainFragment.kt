@@ -9,6 +9,7 @@ import com.github.haejung83.databinding.MainFragmentBinding
 import com.github.haejung83.extend.obtainViewModel
 import com.github.haejung83.extend.startActivity
 import com.github.haejung83.presentation.base.DataBindingFragment
+import com.github.haejung83.presentation.frequently.FrequentlyActivity
 import com.github.haejung83.presentation.history.HistoryActivity
 import com.github.haejung83.presentation.main.MainViewModel.OpenScreen.OpenFrequentlyScreen
 import com.github.haejung83.presentation.main.MainViewModel.OpenScreen.OpenHistoryScreen
@@ -25,7 +26,7 @@ class MainFragment : DataBindingFragment<MainFragmentBinding>() {
                 event.getContentIfNotHandled()?.let { openScreen ->
                     when (openScreen) {
                         is OpenHistoryScreen -> startActivity(HistoryActivity::class.java)
-                        is OpenFrequentlyScreen -> TODO("not implmented yet")
+                        is OpenFrequentlyScreen -> startActivity(FrequentlyActivity::class.java)
                     }
                 }
             })

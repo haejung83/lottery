@@ -1,0 +1,48 @@
+<resources>
+    <!-- Common -->
+    <string name="label_app_name">Neo 로또</string>
+    <string name="label_ok">확인</string>
+    <string name="label_cancel">취소</string>
+    <string name="label_yes">네</string>
+    <string name="label_no">아니오</string>
+
+    <!-- Splash -->
+    <string name="label_splash_gathering_data">서버로부터 데이터를 받고 있습니다.</string>
+
+    <!-- Welcome -->
+    <string name="label_welcome_greeting">Neo 로또에 오신걸 환영합니다.</string>
+
+    <!-- Main -->
+    <string name="label_main_greeting">꿈의 Neo 로또. 행운을 빌어요!</string>
+    <string name="label_draw_number_title">회차</string>
+    <string name="label_empty_or_out_of_range_desc">비어 있거나 범위가 잘못 되어있습니다.</string>
+    <string name="label_generate_lottery">로또 생성</string>
+    <string name="label_check_lottery">당첨 확인</string>
+    <string name="label_draw_history">지난 회차 목록 조회</string>
+    <string name="label_frequently">번호 랭킹 조회</string>
+
+    <!-- Win Dialog -->
+    <string name="label_win_dialog_title">당첨 결과</string>
+    <string name="label_win_dialog_1st">1등 당첨!</string>
+    <string name="label_win_dialog_2nd">2등 당첨!</string>
+    <string name="label_win_dialog_3rd">3등 당첨!</string>
+    <string name="label_win_dialog_4th">4등 당첨!</string>
+    <string name="label_win_dialog_5th">5등 당첨!</string>
+    <string name="label_win_dialog_losing">꽝 다음기회에..</string>
+
+    <!-- History -->
+    <string name="label_draw_number">회차</string>
+    <string name="label_draw_lottery_numbers">번호</string>
+    <string name="label_draw_bonus_number">보너스</string>
+
+    <!-- Retrieve -->
+    <string name="label_retrieve_title">1등 번호 보기 (Deeplink)</string>
+    <string name="label_retrieve_notice">잘못된 회차 번호입니다.\n다시 확인하여 주세요.</string>
+
+    <!-- Frequently -->
+    <string name="label_frequently_title">번호 랭킹 조회</string>
+    <string name="label_frequently_rank">랭킹</string>
+    <string name="label_frequently_number">번호</string>
+    <string name="label_frequently_count">횟수</string>
+
+</resources>

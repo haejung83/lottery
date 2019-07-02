@@ -40,5 +40,9 @@
     <string name="label_retrieve_notice">Wrong draw number.\nPlease, Check input draw number.</string>
 
     <!-- Frequently -->
+    <string name="label_frequently_title">Frequently Numbers</string>
+    <string name="label_frequently_rank">Rank</string>
+    <string name="label_frequently_number">Number</string>
+    <string name="label_frequently_count">Count</string>
 
 </resources>
