@@ -10,7 +10,7 @@
     <string name="label_splash_gathering_data">Gathering data from the Server</string>
 
     <!-- Welcome -->
-    <string name="label_welcome">Welcome to NeoLottery</string>
+    <string name="label_welcome_greeting">Welcome to NeoLottery</string>
 
     <!-- Main -->
     <string name="label_main_greeting">NeoLottery!, Have a good luck</string>
@@ -32,7 +32,13 @@
 
     <!-- History -->
     <string name="label_draw_number">No.</string>
-    <string name="label_draw_six_numbers">Numbers</string>
+    <string name="label_draw_lottery_numbers">Numbers</string>
     <string name="label_draw_bonus_number">Bonus</string>
+
+    <!-- Retrieve -->
+    <string name="label_retrieve_title">Retrieve Win Numbers (Deeplink)</string>
+    <string name="label_retrieve_notice">Wrong draw number.\nPlease, Check input draw number.</string>
+
+    <!-- Frequently -->
 
 </resources>

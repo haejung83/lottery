@@ -19,7 +19,7 @@
 
         <TextView
                 android:id="@+id/text_splash_desc"
-                android:text="@string/label_welcome"
+                android:text="@string/label_welcome_greeting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"

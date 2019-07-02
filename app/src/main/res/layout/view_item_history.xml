@@ -36,7 +36,7 @@
                 android:id="@+id/text_draw_main_numbers"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/label_draw_six_numbers"
+                android:text="@string/label_draw_lottery_numbers"
                 app:text_six_numbers="@{lottery}"
                 app:layout_constraintTop_toTopOf="@+id/text_draw_number"
                 app:layout_constraintBottom_toBottomOf="@+id/text_draw_number"

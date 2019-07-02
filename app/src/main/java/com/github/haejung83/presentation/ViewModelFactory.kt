@@ -7,6 +7,7 @@ import com.github.haejung83.data.LotteryRepository
 import com.github.haejung83.data.provideLotteryRepository
 import com.github.haejung83.presentation.history.HistoryViewModel
 import com.github.haejung83.presentation.main.MainViewModel
+import com.github.haejung83.presentation.retrieve.RetrieveViewModel
 import com.github.haejung83.presentation.splash.SplashViewModel
 import com.github.haejung83.presentation.welcome.WelcomeViewModel
 
@@ -22,6 +23,7 @@ class ViewModelFactory private constructor(
                 isAssignableFrom(WelcomeViewModel::class.java) -> WelcomeViewModel()
                 isAssignableFrom(MainViewModel::class.java) -> MainViewModel(lotteryRepository)
                 isAssignableFrom(HistoryViewModel::class.java) -> HistoryViewModel(lotteryRepository)
+                isAssignableFrom(RetrieveViewModel::class.java) -> RetrieveViewModel(lotteryRepository)
                 else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }
         } as T

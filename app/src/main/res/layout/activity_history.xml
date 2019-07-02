@@ -28,7 +28,7 @@
                 android:id="@+id/text_header_six_numbers"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/label_draw_six_numbers"
+                android:text="@string/label_draw_lottery_numbers"
                 app:layout_constraintTop_toTopOf="@+id/text_header_draw_number"
                 app:layout_constraintStart_toEndOf="@+id/text_header_draw_number"
                 app:layout_constraintBottom_toBottomOf="@+id/text_header_draw_number"
