@@ -1,6 +1,7 @@
 package com.github.haejung83.presentation.main
 
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.github.haejung83.R
@@ -25,6 +26,17 @@ class MainFragment : DataBindingFragment<MainFragmentBinding>() {
                     when (openScreen) {
                         is OpenHistoryScreen -> startActivity(HistoryActivity::class.java)
                         is OpenFrequentlyScreen -> TODO("not implmented yet")
+                    }
+                }
+            })
+            showWinResultEvent.observe(this@MainFragment, Observer { event ->
+                event.getContentIfNotHandled()?.let { winResult ->
+                    context?.let {
+                        AlertDialog.Builder(it)
+                            .setTitle(R.string.label_win_dialog_title)
+                            .setMessage(winResult)
+                            .setPositiveButton(R.string.label_ok) { _, _ -> }
+                            .show()
                     }
                 }
             })

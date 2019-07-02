@@ -5,12 +5,13 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.github.haejung83.LOTTERY_DRAW_NUMBER_CACHE_LIMIT
+import com.github.haejung83.R
 import com.github.haejung83.data.LotteryRepository
+import com.github.haejung83.data.local.Lottery
 import com.github.haejung83.presentation.Event
 import com.github.haejung83.presentation.base.DisposableViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
 import kotlin.random.Random
 
 class MainViewModel(
@@ -23,14 +24,13 @@ class MainViewModel(
     val openScreenEvent: LiveData<Event<OpenScreen>>
         get() = _openScreenEvent
 
+    private val _showWinResultEvent = MutableLiveData<Event<Int>>()
+    val showWinResultEvent: LiveData<Event<Int>>
+        get() = _showWinResultEvent
+
     private val _generatedLotteryNumbers = MutableLiveData<List<Int>>().apply { value = emptyList() }
     val generatedLotteryNumbers: LiveData<String> = Transformations.map(_generatedLotteryNumbers) {
         it.joinToString()
-    }
-
-    private val _generatedBonusNumber = MutableLiveData<Int>().apply { value = 0 }
-    val generatedBonusNumber: LiveData<String> = Transformations.map(_generatedBonusNumber) {
-        if (it != 0) it.toString() else ""
     }
 
     // Bi-directional
@@ -57,31 +57,38 @@ class MainViewModel(
     }
 
     fun generateLottery() {
-        val store = generateRandomSevenDigits()
-        val (sixDigits, bonus) = pickBonusNumber(store)
-        _generatedLotteryNumbers.value = sixDigits
-        _generatedBonusNumber.value = bonus
+        _generatedLotteryNumbers.value = generateRandomSevenDigits()
     }
 
     private fun generateRandomSevenDigits() =
         mutableSetOf<Int>().apply {
-            while (size < 7) add(Random.nextInt(1, 46))
+            while (size < 6) add(Random.nextInt(1, 46))
         }.sorted()
-
-    private fun pickBonusNumber(generatedNumber: List<Int>): Pair<List<Int>, Int> {
-        val bonus = generatedNumber[Random.nextInt(7)]
-        return Pair(generatedNumber.filterNot { it == bonus }, bonus)
-    }
 
     fun checkGeneratedLottery() {
         drawNumber.value?.let {
             lotteryRepository.getLotteryByDrawNumber(it.toInt())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    Timber.i("Selected Lottery: $it")
+                .subscribe { lottery ->
+                    checkWinAndShowResult(lottery)
                 }
         }
+    }
+
+    private fun checkWinAndShowResult(lottery: Lottery) {
+        val generatedNumbers = _generatedLotteryNumbers.value ?: emptyList()
+        val winNumbers = lottery.toSixNumberList()
+        val winBonusNumber = lottery.bonusNo
+
+        val winResultMessage: Int = when (winNumbers.count { generatedNumbers.contains(it) }) {
+            6 -> R.string.label_win_dialog_1st
+            5 -> if (generatedNumbers.contains(winBonusNumber)) R.string.label_win_dialog_2nd else R.string.label_win_dialog_3rd
+            4 -> R.string.label_win_dialog_4th
+            3 -> R.string.label_win_dialog_5th
+            else -> R.string.label_win_dialog_losing
+        }
+        _showWinResultEvent.value = Event(winResultMessage)
     }
 
     fun openHistory() {

@@ -12,10 +12,27 @@
     <!-- Welcome -->
     <string name="label_welcome">Welcome to NeoLottery</string>
 
+    <!-- Main -->
+    <string name="label_main_greeting">NeoLottery!, Have a good luck</string>
+    <string name="label_draw_number_title">Draw Number</string>
+    <string name="label_empty_or_out_of_range_desc">Empty or Out of range.</string>
+    <string name="label_generate_lottery">New Lottery</string>
+    <string name="label_check_lottery">Check</string>
+    <string name="label_draw_history">Draw History</string>
+    <string name="label_frequently">Frequently</string>
+
+    <!-- Win Dialog -->
+    <string name="label_win_dialog_title">Win result</string>
+    <string name="label_win_dialog_1st">Win 1st</string>
+    <string name="label_win_dialog_2nd">Win 2nd</string>
+    <string name="label_win_dialog_3rd">Win 3rd</string>
+    <string name="label_win_dialog_4th">Win 4th</string>
+    <string name="label_win_dialog_5th">Win 5th</string>
+    <string name="label_win_dialog_losing">Losing ticket</string>
+
     <!-- History -->
     <string name="label_draw_number">No.</string>
     <string name="label_draw_six_numbers">Numbers</string>
     <string name="label_draw_bonus_number">Bonus</string>
-
 
 </resources>
